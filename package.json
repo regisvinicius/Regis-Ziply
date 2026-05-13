@@ -1,0 +1,24 @@
+{
+  "name": "ziply",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Full-stack URL shortener built with React, Fastify and PostgreSQL",
+  "type": "module",
+  "scripts": {
+    "dev": "pnpm -r --parallel --filter '@ziply/*' dev",
+    "build": "pnpm -r --filter '@ziply/*' build",
+    "test": "pnpm -r --filter '@ziply/*' test",
+    "typecheck": "pnpm -r --filter '@ziply/*' typecheck",
+    "lint": "pnpm -r --filter '@ziply/*' lint",
+    "format": "pnpm -r --filter '@ziply/*' format",
+    "db:migrate": "pnpm --filter @ziply/server db:migrate",
+    "infra:up": "docker compose up -d",
+    "infra:down": "docker compose down",
+    "infra:logs": "docker compose logs -f"
+  },
+  "engines": {
+    "node": ">=22",
+    "pnpm": ">=10"
+  },
+  "packageManager": "pnpm@10.28.2"
+}

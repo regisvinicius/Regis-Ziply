@@ -1,0 +1,16 @@
+:root {
+  --av-ink: #050816;
+  --av-graphite: #07111f;
+  --av-steel: #0f1f2e;
+  --av-gray-700: #1e3a4c;
+  --av-gray-500: #64748b;
+  --av-gray-300: #a7f3d0;
+  --av-gray-200: #d1d5db;
+  --av-gray-100: #e5f6ef;
+  --av-paper: #f3fbf7;
+  --av-white: #ffffff;
+  --av-axis: #22c55e;
+  --av-axis-soft: rgba(34, 197, 94, 0.1);
+  --av-hair: rgba(5, 8, 22, 0.08);
+  --av-hair-dark: rgba(255, 255, 255, 0.08);
+}

@@ -1,0 +1,140 @@
+@import "tailwindcss";
+@import "./tokens.css";
+
+@font-face {
+  font-family: "General Sans";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("/fonts/general-sans/GeneralSans-300.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "General Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/general-sans/GeneralSans-400.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "General Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/general-sans/GeneralSans-500.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "General Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/general-sans/GeneralSans-600.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "General Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/general-sans/GeneralSans-700.woff2") format("woff2");
+}
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: "General Sans", "Söhne", "Neue Haas Grotesk", -apple-system, BlinkMacSystemFont,
+    "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+/* Light (default) - AV LABS Paper surface. */
+:root {
+  --radius: 0.5rem;
+  --background: var(--av-paper);
+  --foreground: var(--av-ink);
+  --card: var(--av-white);
+  --card-foreground: var(--av-ink);
+  --popover: var(--av-white);
+  --popover-foreground: var(--av-ink);
+  --primary: var(--av-ink);
+  --primary-foreground: var(--av-paper);
+  --secondary: var(--av-gray-100);
+  --secondary-foreground: var(--av-ink);
+  --muted: var(--av-gray-100);
+  --muted-foreground: var(--av-gray-500);
+  --accent: var(--av-axis);
+  --accent-foreground: var(--av-white);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: var(--av-white);
+  --border: var(--av-hair);
+  --input: var(--av-gray-200);
+  --ring: var(--av-axis);
+}
+
+/* Dark - AV LABS Graphite surface. */
+.dark {
+  --background: var(--av-graphite);
+  --foreground: var(--av-white);
+  --card: var(--av-steel);
+  --card-foreground: var(--av-white);
+  --popover: var(--av-steel);
+  --popover-foreground: var(--av-white);
+  --primary: var(--av-white);
+  --primary-foreground: var(--av-ink);
+  --secondary: var(--av-gray-700);
+  --secondary-foreground: var(--av-white);
+  --muted: var(--av-steel);
+  --muted-foreground: var(--av-gray-300);
+  --accent: var(--av-axis);
+  --accent-foreground: var(--av-white);
+  --destructive: oklch(0.704 0.191 22.216);
+  --destructive-foreground: var(--av-white);
+  --border: var(--av-hair-dark);
+  --input: var(--av-gray-700);
+  --ring: var(--av-axis);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    color-scheme: dark;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "ss01", "ss02", "cv11";
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  ::selection {
+    background-color: color-mix(in oklch, var(--accent) 18%, transparent);
+  }
+}
