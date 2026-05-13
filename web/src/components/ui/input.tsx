@@ -21,19 +21,19 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
     <div className="flex flex-col gap-1.5">
       <label
         htmlFor={inputId}
-        className="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-muted-foreground"
+        className="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-[#8d93a6]"
       >
         {label}
       </label>
       <div
         className={cn(
-          'flex h-11 items-center gap-2 rounded-md border bg-card px-3 transition-colors',
+          'flex h-11 items-center gap-2 rounded-md border border-[#c7ccd9] bg-[#ffffff] px-3 transition-colors',
           'focus-within:border-primary focus-within:ring-2 focus-within:ring-ring/40',
-          error ? 'border-destructive' : 'border-input',
+          error ? 'border-destructive' : '',
         )}
       >
         {leadingAddon ? (
-          <span className="select-none font-mono text-xs uppercase tracking-[0.1em] text-muted-foreground">
+          <span className="select-none font-mono text-xs uppercase tracking-[0.1em] text-[#7f8597]">
             {leadingAddon}
           </span>
         ) : null}
@@ -43,7 +43,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
           aria-invalid={Boolean(error)}
           aria-describedby={describedBy}
           className={cn(
-            'min-w-0 flex-1 bg-transparent text-sm text-foreground placeholder:text-muted-foreground/60',
+            'min-w-0 flex-1 bg-transparent text-sm text-[#1f2433] placeholder:text-[#9aa0b2]',
             'focus:outline-none',
             className,
           )}

@@ -17,14 +17,14 @@ export function Wordmark({ className, ariaLabel, text = 'av/url' }: WordmarkProp
       aria-label={ariaLabel ?? text}
       role="img"
     >
-      <span style={{ letterSpacing: '-0.04em', color: 'var(--foreground)' }}>{head}</span>
+      <span style={{ letterSpacing: '-0.04em' }}>{head}</span>
       {tail ? (
         <>
           <span aria-hidden style={{ display: 'inline-block', width: '0.14em' }} />
           <span
             style={{
               fontWeight: 300,
-              color: 'var(--av-gray-500)',
+              color: 'currentColor',
               letterSpacing: '-0.01em',
             }}
           >
