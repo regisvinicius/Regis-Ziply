@@ -13,7 +13,6 @@ export function LinksList() {
 
   const items = data?.items ?? [];
   const hasLinks = items.length > 0;
-  const count = items.length;
 
   const onDownload = async () => {
     try {
@@ -30,27 +29,24 @@ export function LinksList() {
   };
 
   return (
-    <div className="overflow-hidden rounded-xl border border-border bg-card">
-      <div className="flex items-center justify-between border-b border-border px-4 py-3 sm:px-6">
-        <span className="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-muted-foreground">
-          {isLoading ? '— LINKS' : `${count} ${count === 1 ? 'LINK' : 'LINKS'}`}
-        </span>
+    <div className="overflow-hidden rounded-xl border-0 bg-[#f3f3f6]">
+      <div className="flex items-center justify-between px-4 py-4 sm:px-6">
+        <h2 className="text-xl font-semibold text-[#23242f]">Meus links</h2>
         <Button
           variant="outline"
           size="sm"
           onClick={onDownload}
           loading={download.isPending}
           disabled={!hasLinks || isLoading}
-          title={!hasLinks ? 'Crie um link primeiro' : 'Download as CSV'}
+          className="border-[#dbdde5] bg-[#e7e9f2] text-[#50556b]"
         >
           <Download className="size-4" aria-hidden />
           <span>Baixar CSV</span>
         </Button>
       </div>
       {isLoading ? (
-        <ul className="divide-y divide-border">
+        <ul className="divide-y divide-[#e0e3ea] px-2 pb-2">
           {Array.from({ length: 3 }).map((_, i) => (
-            // biome-ignore lint/suspicious/noArrayIndexKey: skeleton placeholder
             <li key={i} className="flex items-center gap-3 px-4 py-3 sm:px-6">
               <div className="flex-1 space-y-2">
                 <Skeleton className="h-4 w-1/2" />
@@ -69,17 +65,13 @@ export function LinksList() {
           </Button>
         </div>
       ) : hasLinks ? (
-        <ul className="divide-y divide-border">
+        <ul className="divide-y divide-[#e0e3ea] px-2 pb-2">
           {items.map((link) => (
             <LinkRow key={link.id} link={link} />
           ))}
         </ul>
       ) : (
-        <EmptyState
-          title="NENHUM LINK AINDA"
-          description="Cole uma URL acima para criar seu primeiro link."
-          className="border-0"
-        />
+        <EmptyState title="NENHUM LINK AINDA" description="Cole uma URL acima para criar seu primeiro link." className="border-0" />
       )}
     </div>
   );

@@ -16,7 +16,6 @@ export function LinkRow({ link }: { link: Link }) {
   const deleteLink = useDeleteLink();
 
   const shortUrl = `${FRONTEND_URL}/${link.shortPath}`;
-  const visibleShort = `${FRONTEND_URL.replace(/^https?:\/\//, '')}/${link.shortPath}`;
 
   const onCopy = async () => {
     try {
@@ -28,11 +27,11 @@ export function LinkRow({ link }: { link: Link }) {
   };
 
   const onDelete = async () => {
-    const confirmed = window.confirm(`Delete ${visibleShort}?`);
+    const confirmed = window.confirm(`Delete ${link.shortPath}?`);
     if (!confirmed) return;
     try {
       await deleteLink.mutateAsync(link.shortPath);
-      show({ title: 'Link deleted', description: visibleShort, variant: 'success' });
+      show({ title: 'Link deleted', description: link.shortPath, variant: 'success' });
     } catch (err) {
       if (err instanceof ApiHttpError) {
         show({ title: 'Delete failed', description: err.message, variant: 'error' });
@@ -45,7 +44,7 @@ export function LinkRow({ link }: { link: Link }) {
   return (
     <li
       className={cn(
-        'flex items-center gap-3 border-b border-border px-4 py-3 last:border-b-0 sm:px-6',
+        'flex items-center gap-3 px-4 py-3 last:border-b-0 sm:px-6',
         deleteLink.isPending && 'opacity-50',
       )}
     >
@@ -54,26 +53,19 @@ export function LinkRow({ link }: { link: Link }) {
           href={shortUrl}
           target="_blank"
           rel="noreferrer"
-          className="block truncate text-sm font-medium text-foreground underline-offset-4 transition-colors hover:text-accent hover:underline"
+          className="block truncate text-sm font-semibold text-[#2f46b9] underline-offset-4 hover:underline"
         >
-          {visibleShort}
+          brev.ly/{link.shortPath}
         </a>
-        <p className="truncate text-xs text-muted-foreground" title={link.originalUrl}>
+        <p className="truncate text-xs text-[#7a8096]" title={link.originalUrl}>
           {link.originalUrl}
         </p>
       </div>
-      <p className="hidden whitespace-nowrap font-mono text-[0.7rem] uppercase tracking-[0.1em] text-muted-foreground sm:block">
-        {link.accessCount} {link.accessCount === 1 ? 'access' : 'accesses'}
-      </p>
+      <p className="hidden whitespace-nowrap text-xs text-[#74798f] sm:block">{link.accessCount} acessos</p>
       <IconButton aria-label="Copy short URL" onClick={onCopy}>
         <Copy className="size-4" aria-hidden />
       </IconButton>
-      <IconButton
-        aria-label="Delete link"
-        variant="destructive"
-        onClick={onDelete}
-        disabled={deleteLink.isPending}
-      >
+      <IconButton aria-label="Delete link" variant="destructive" onClick={onDelete} disabled={deleteLink.isPending}>
         <Trash2 className="size-4" aria-hidden />
       </IconButton>
     </li>

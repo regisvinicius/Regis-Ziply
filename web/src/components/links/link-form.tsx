@@ -56,13 +56,14 @@ export function LinkForm() {
   const isBusy = isSubmitting || createLink.isPending;
 
   return (
-    <Card>
+    <Card className="border-0 bg-[#f3f3f6] shadow-none">
       <CardBody>
+        <h2 className="mb-4 text-xl font-semibold text-[#23242f]">Novo link</h2>
         <form onSubmit={onSubmit} className="flex flex-col gap-4">
           <Input
-            label="URL original"
+            label="Link original"
             type="url"
-            placeholder="https://example.com/a-very-long-link"
+            placeholder="www.exemplo.com.br"
             autoComplete="url"
             autoCorrect="off"
             autoCapitalize="off"
@@ -72,7 +73,7 @@ export function LinkForm() {
             {...register('originalUrl')}
           />
           <Input
-            label="Código curto"
+            label="Link encurtado"
             leadingAddon={SHORT_PREFIX}
             placeholder="meu-link"
             autoComplete="off"
@@ -83,8 +84,8 @@ export function LinkForm() {
             error={errors.shortPath?.message}
             {...register('shortPath')}
           />
-          <Button type="submit" loading={isBusy} fullWidth>
-            Criar link
+          <Button type="submit" loading={isBusy} fullWidth className="bg-[#2f46b9] hover:bg-[#2c40ab]">
+            Salvar link
           </Button>
         </form>
       </CardBody>
